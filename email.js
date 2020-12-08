@@ -42,7 +42,7 @@ rett.insertEmail = (username, receiver, title, content, attachment)=>{
 
 //delete
 rett.deleteEmail = (id)=>{
-    return UserAcc.deleteOne({ //atau delete Many
+    return Email.deleteOne({ //atau delete Many
         _id:id
     })
 }
