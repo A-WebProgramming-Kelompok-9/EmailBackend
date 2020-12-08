@@ -18,3 +18,9 @@ app.get("/del", (req, res) => {
         res.send(ress)
     })
 })
+
+app.get("/log",(req,res)=>{
+    db.getSupport().then((ress,err)=>{
+        res.send(ress)
+    })
+})
