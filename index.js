@@ -13,6 +13,37 @@ app.get("/", (req, res) => {
     });
 })
 
+app.get("/account/forget", (req, res) => {
+    db.forgetUserAcc().then((ress, err) => {
+        res.send(ress)
+    });
+})
+
+app.get("/account/add", (req, res) => {
+    db.insertUserAcc().then((ress, err) => {
+        res.send(ress)
+    });
+})
+
+app.get("/account/update", (req, res) => {
+    db.updateUserAcc().then((ress, err) => {
+        res.send(ress)
+    });
+})
+
+app.get("/account/update/pic", (req, res) => {
+    db.updateUserAccPicture().then((ress, err) => {
+        res.send(ress)
+    });
+})
+
+app.get("/account/update/backpic", (req, res) => {
+    db.updateUserAccBackground().then((ress, err) => {
+        res.send(ress)
+    });
+})
+
+
 app.get("/del", (req, res) => {
     db.deleteUserAcc().then((ress, err) => {
         res.send(ress)
