@@ -19,10 +19,18 @@ const emailSchema = mongoose.Schema({
 //isi parameter: <nama tabel>, <skema tabel>
 const Email = mongoose.model("Email",emailSchema)
 
-//select
+//select one
 rett.getEmail = (id)=>{
     return Email.find({
         _id:id
+    });
+}
+
+
+//select all
+rett.getAllEmail = ()=>{
+    return Email.find({
+        
     });
 }
 
