@@ -4,6 +4,8 @@ mongoose.connect(speedurl, {useNewUrlParser: true, useUnifiedTopology: true,sock
 const db = mongoose.connection;
 db.once('open',()=>{console.log("Connected")})
 
+module.exports =  mongoose;
+/*
 let rett = {};
 
 //ngebikin struktur tabelnya
@@ -58,3 +60,4 @@ rett.deleteUserAcc = (uname)=>{
 }
 
 module.exports =  rett;
+*/
