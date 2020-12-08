@@ -8,12 +8,12 @@ const bodyParser = require("body-parser")
 app.use(cors())
 app.use(bodyParser.json())
 
-app.listen(port || process.env.PORT, () => {
+app.listen(process.env.PORT||port , () => {
     console.log("Running on: http://localhost:" + port);
 })
 
 app.get("/", (req, res) => {
-    db.getUserAcc().then((ress, err) => {
+    db.getUserAcc(req.body.usern,req.body.pass).then((ress, err) => {
         res.json(ress)
     });
 })
