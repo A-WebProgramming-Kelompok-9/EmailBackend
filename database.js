@@ -1,16 +1,16 @@
 const speedurl = "mongodb+srv://application:speedwagonemail@cluster0.yonf1.mongodb.net/speedwagonmail?retryWrites=true&w=majority"
-
 const mongoose = require("mongoose")
 mongoose.connect(speedurl, {useNewUrlParser: true, useUnifiedTopology: true,socketTimeoutMS:10*1000})
 const db = mongoose.connection;
 db.once('open',()=>{console.log("Connected")})
+
 let rett = {};
 
 //ngebikin struktur tabelnya
 const userAccSchema = mongoose.Schema({
-    Username:String,
-    Password:String,
-    Alt_Email:String,
+    Username:String, //kolom 1
+    Password:String, //kolom 2
+    Alt_Email:String, //kolom 3
     Display_Name:String,
     Display_Pic:String,
     Background_Pic:String
@@ -26,12 +26,11 @@ rett.getUserAcc = ()=>{
     });
 }
 
-
 //insert
-rett.insertUserAcc = ()=>{
+rett.insertUserAcc = (uname, password)=>{
     return UserAcc.create({
-        Username:"Yuriko192",
-        Password:"Password123",
+        Username:uname,
+        Password:password,
         Alt_Email:"Email123@gmail.com",
         Display_Name:"Yuriko",
         Display_Pic:"image.png",
@@ -51,9 +50,10 @@ rett.updateUserAcc = ()=>{
 }
 
 //delete
-rett.deleteUserAcc = ()=>{
+rett.deleteUserAcc = (uname)=>{
     return UserAcc.deleteOne({ //atau delete Many
-        Username: "Yuriko192"
+        //where disini
+        Username: uname
     })
 }
 

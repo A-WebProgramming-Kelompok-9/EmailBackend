@@ -3,13 +3,18 @@ const app = express();
 const port = 3000;
 const db = require("./database")
 
+const cors = require("cors")
+const bodyParser = require("body-parser")
+app.use(cors())
+app.use(bodyParser.json())
+
 app.listen(port, () => {
     console.log("Running on: http://localhost:" + port);
 })
 
 app.get("/", (req, res) => {
     db.getUserAcc(req.body.usern,req.body.pass).then((ress, err) => {
-        res.send(ress)
+        res.json(ress)
     });
 })
 
@@ -78,6 +83,25 @@ app.get("/email/del", (req, res) => {
 
 app.get("/del", (req, res) => {
     db.deleteUserAcc().then((ress, err) => {
+        res.send(ress)
+    })
+})
+
+app.get("/insert", (req, res) => {
+    db.insertUserAcc().then((ress, err) => {
+        res.send(ress)
+    })
+})
+
+
+app.post("/", (req, res) => {
+    db.insertUserAcc(req.body.username, req.body.password).then((ress, err) => {
+        res.send(ress)
+    })
+})
+
+app.post("/del", (req, res) => {
+    db.deleteUserAcc(req.body.content).then((ress, err) => {
         res.send(ress)
     })
 })
