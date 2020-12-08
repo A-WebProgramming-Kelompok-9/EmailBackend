@@ -16,6 +16,11 @@ const userAccSchema = mongoose.Schema({
 //isi parameter: <nama tabel>, <skema tabel>
 const UserAcc = mongoose.model("UserAccount",userAccSchema)
 
+rett.getAllAcc = () => {
+    return UserAcc.find({
+    });
+}
+
 //login
 rett.getUserAcc = (usern, pass) => {
     return UserAcc.find({
@@ -40,7 +45,7 @@ rett.insertUserAcc = (altermail, usern, pass) => {
         Password:pass,
         Display_Pic:'',
         Background_Pic:'',
-        Display_Name:Username
+        Display_Name:usern
     });
 }
 
