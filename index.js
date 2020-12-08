@@ -1,7 +1,8 @@
 const express = require("express");
 const app = express();
 const port =  3000;
-const db = require("./database")
+const db = require("./useracc")
+const emaildb = require("./email")
 
 const cors = require("cors")
 const bodyParser = require("body-parser")
@@ -55,7 +56,7 @@ app.get("/account/update/backpic", (req, res) => {
 })
 
 app.get("/email", (req, res) => {
-    db.getAllEmail().then((ress, err) => {
+    emaildb.getAllEmail().then((ress, err) => {
         res.send(ress)
     });
 })
