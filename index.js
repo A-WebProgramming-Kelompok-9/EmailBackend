@@ -13,7 +13,7 @@ app.listen(port || process.env.PORT, () => {
 })
 
 app.get("/", (req, res) => {
-    db.getUserAcc(req.body.usern,req.body.pass).then((ress, err) => {
+    db.getUserAcc().then((ress, err) => {
         res.json(ress)
     });
 })
