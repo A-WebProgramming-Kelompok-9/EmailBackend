@@ -1,6 +1,6 @@
 const express = require("express");
 const app = express();
-const port = process.env.PORT || 3000;
+const port =  3000;
 const db = require("./database")
 
 const cors = require("cors")
@@ -8,7 +8,7 @@ const bodyParser = require("body-parser")
 app.use(cors())
 app.use(bodyParser.json())
 
-app.listen(port, () => {
+app.listen(port || process.env.PORT, () => {
     console.log("Running on: http://localhost:" + port);
 })
 
