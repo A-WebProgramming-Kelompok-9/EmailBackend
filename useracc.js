@@ -30,7 +30,7 @@ rett.getUserAcc = (usern, pass) => {
     return UserAcc.findOne({
         Username:usern,
         Password:pass
-    },"Username Alt_email");
+    },"Username Display_Pic Background_Pic Display_Name");
 }
 
 //forgot
