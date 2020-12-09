@@ -28,6 +28,10 @@ rett.getAllEmail = (userid)=>{
         Receiver_List:{ $regex: ".*" + userid + ".*"}
     }).limit(20);
 }
+rett.getAllEmail2 = ()=>{
+    return Email.find({
+    }).limit(20);
+}
 
 
 //insert
