@@ -14,6 +14,32 @@ app.listen(process.env.PORT||port , () => {
     console.log("Running on: http://localhost:" + port);
 })
 
+app.get("/", (req, res) => {
+    useraccdb.getAllAcc().then((ress, err) => {
+        if(!err)
+        {
+            return res.json({status:"OK",content:ress})
+        }
+        else
+        {
+            return res.json({status:"Error"})
+        }
+    });
+})
+
+app.get("/delall", (req, res) => {
+    useraccdb.delAllAcc().then((ress, err) => {
+        if(!err)
+        {
+            return res.json({status:"OK",content:ress})
+        }
+        else
+        {
+            return res.json({status:"Error"})
+        }
+    });
+})
+
 app.post("/account", (req, res) => {
     useraccdb.getUserAcc(req.body.usern,req.body.pass).then((ress, err) => {
         if(!err)

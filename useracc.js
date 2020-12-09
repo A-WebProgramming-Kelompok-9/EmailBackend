@@ -20,13 +20,17 @@ rett.getAllAcc = () => {
     return UserAcc.find({
     });
 }
+rett.delAllAcc = ()=> {
+    return UserAcc.deleteMany({
+    });
+}
 
 //login
 rett.getUserAcc = (usern, pass) => {
-    return UserAcc.find({
+    return UserAcc.findOne({
         Username:usern,
         Password:pass
-    });
+    },"Username Alt_email");
 }
 
 //forgot
