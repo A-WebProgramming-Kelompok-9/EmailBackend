@@ -23,10 +23,10 @@ rett.getEmail = (id)=>{
 
 
 //select all
-rett.getAllEmail = ()=>{
+rett.getAllEmail = (userid)=>{
     return Email.find({
-        
-    });
+        Receiver_List:{ $regex: userid }
+    }).limit(20);
 }
 
 
