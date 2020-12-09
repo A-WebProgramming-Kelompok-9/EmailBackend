@@ -33,7 +33,7 @@ rett.getAllEmail = (userid)=>{
 //insert
 rett.insertEmail = (username, receiver, title, content, attachment)=>{
     return Email.create({
-        Send_Date:Date.now,
+        Send_Date:Date.now(),
         Sender_Username:username,
         Receiver_List:receiver,
         Title:title,
