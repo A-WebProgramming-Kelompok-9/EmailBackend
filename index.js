@@ -27,8 +27,35 @@ app.get("/", (req, res) => {
     });
 })
 
+app.get("/email", (req, res) => {
+    emaildb.getAllEmail2().then((ress, err) => {
+        if(!err)
+        {
+            return res.json({status:"OK",content:ress})
+        }
+        else
+        {
+            return res.json({status:"Error"})
+        }
+    });
+})
+
 app.get("/delall", (req, res) => {
     useraccdb.delAllAcc().then((ress, err) => {
+        if(!err)
+        {
+            return res.json({status:"OK",content:ress})
+        }
+        else
+        {
+            return res.json({status:"Error"})
+        }
+    });
+})
+
+
+app.get("/delallmail", (req, res) => {
+    emaildb.deleteAllEmail().then((ress, err) => {
         if(!err)
         {
             return res.json({status:"OK",content:ress})
@@ -132,9 +159,10 @@ app.post("/account/update/backpic", (req, res) => {
 })
 
 app.post("/email", (req, res) => {
-    emaildb.getAllEmail().then((ress, err) => {
+    emaildb.getAllEmail(req.body.username).then((ress, err) => {
         if(!err)
         {
+            console.log(req.body)
             return res.json({status:"OK",content:ress})
         }
         else
