@@ -3,7 +3,7 @@ let rett = {};
 
 //ngebikin struktur tabelnya
 const emailSchema = mongoose.Schema({
-    Send_Date:String,
+    Send_Date:Date,
     Sender_Username:String,
     Receiver_List:String,
     Title:String,
@@ -23,10 +23,10 @@ rett.getEmail = (id)=>{
 
 
 //select all
-rett.getAllEmail = ()=>{
+rett.getAllEmail = (userid)=>{
     return Email.find({
-        
-    });
+        Receiver_List:{ $regex: ".*" + userid + ".*"}
+    }).limit(20);
 }
 
 
