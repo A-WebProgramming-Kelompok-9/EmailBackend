@@ -159,10 +159,9 @@ app.post("/account/update/backpic", (req, res) => {
 })
 
 app.post("/email", (req, res) => {
-    emaildb.getAllEmail(req.body.username).then((ress, err) => {
+    emaildb.getAllEmail(req.body.username,req.body.page).then((ress, err) => {
         if(!err)
         {
-            console.log(req.body)
             return res.json({status:"OK",content:ress})
         }
         else
