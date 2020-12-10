@@ -16,7 +16,7 @@ const Email = mongoose.model("Email",emailSchema)
 
 //select one
 rett.getEmail = (id)=>{
-    return Email.find({
+    return Email.findOne({
         _id:id
     });
 }
@@ -26,7 +26,9 @@ rett.getEmail = (id)=>{
 rett.getAllEmail = (userid,page)=>{
     return Email.find({
         Receiver_List:{ $regex: ".*" + userid + ".*"}
-    }).skip(parseInt(page)*20).limit(20);
+    },
+        '_id Sender_Username Title Send_Date'
+    ).skip(parseInt(page)*20).limit(20);
 }
 rett.getAllEmail2 = ()=>{
     return Email.find({
