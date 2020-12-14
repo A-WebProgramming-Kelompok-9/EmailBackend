@@ -42,6 +42,7 @@ rett.getUserPass = (Username) => {
 //disini artinya itu kalo di sql
 //kita select password dari db
 //wherenya itu username
+//tes
 
 //forgot
 rett.forgetUserAcc = (usern, altermail) => {
