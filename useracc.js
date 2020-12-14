@@ -53,22 +53,14 @@ rett.forgetUserAcc = (usern, altermail) => {
 
 //register
 rett.insertUserAcc = (altermail, usern, pass) => {
-    userAcc.find({
-        Username:usern
-    }).then((ress) => {
-        if(ress == null){
-            return UserAcc.create({
-                Alt_Email:altermail,
-                Username:usern,
-                Password:pass,
-                Display_Pic:'',
-                Background_Pic:'',
-                Display_Name:usern
-            });
-        }
-        return {content: "userexist"};
-    })
-
+    return UserAcc.create({
+        Alt_Email:altermail,
+        Username:usern,
+        Password:pass,
+        Display_Pic:'',
+        Background_Pic:'',
+        Display_Name:usern
+    });
 }
 
 //update pass
