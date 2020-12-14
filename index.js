@@ -1,3 +1,4 @@
+const bcrypt = require('bcryptjs');
 const express = require("express");
 const app = express();
 const port =  3000;
@@ -68,7 +69,9 @@ app.get("/delallmail", (req, res) => {
 })
 
 app.post("/account", (req, res) => {
-    useraccdb.getUserAcc(req.body.usern,req.body.pass).then((ress, err) => {
+    let salt = bcrypt.genSaltSync(25);
+    let password = bcrypt.hashSync(req.body.pass, salt);
+    useraccdb.getUserAcc(req.body.usern,password).then((ress, err) => {
         if(!err)
         {
             return res.json({status:"OK",content:ress})
@@ -94,7 +97,9 @@ app.post("/account/forget", (req, res) => {
 })
 
 app.post("/account/add", (req, res) => {
-    useraccdb.insertUserAcc(req.body.altermail,req.body.usern,req.body.pass).then((ress, err) => {
+    let salt = bcrypt.genSaltSync(25);
+    let password = bcrypt.hashSync(req.body.pass, salt);
+    useraccdb.insertUserAcc(req.body.altermail,req.body.usern,password).then((ress, err) => {
         if(!err)
         {
             return res.json({status:"OK",content:ress})
@@ -107,7 +112,9 @@ app.post("/account/add", (req, res) => {
 })
 
 app.post("/account/update/password", (req, res) => {
-    useraccdb.updateUserAcc(req.body.usern,req.body.pass).then((ress, err) => {
+    let salt = bcrypt.genSaltSync(25);
+    let password = bcrypt.hashSync(req.body.pass, salt);
+    useraccdb.updateUserAcc(req.body.usern,password).then((ress, err) => {
         if(!err)
         {
             return res.json({status:"OK",content:ress})
