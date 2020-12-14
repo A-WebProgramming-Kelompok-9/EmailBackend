@@ -58,4 +58,9 @@ rett.deleteEmail = (id)=>{
     })
 }
 
+rett.deleteAllEmail = ()=>{
+    return Email.deleteMany({ //atau delete Many
+    })
+}
+
 module.exports =  rett;

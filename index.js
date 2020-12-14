@@ -58,10 +58,10 @@ app.get("/delallmail", (req, res) => {
 
 app.post("/account", (req, res) => {
     useraccdb.getUserPass(req.body.usern).then((ress, err) => {
-        if (ress.password == null) {
+        if (ress == null) {
             return res.json({status: "Error"})
         }
-        if (bcrypt.compareSync(req.body.pass, ress.password)) {
+        if (bcrypt.compareSync(req.body.pass, ress.Password)) {
             useraccdb.getUserAcc(req.body.usern).then((ress, err) => {
                 if (!err) {
                     return res.json({status: "OK", content: ress})
@@ -87,19 +87,25 @@ app.post("/account/forget", (req, res) => {
 })
 
 app.post("/account/add", (req, res) => {
-    let salt = bcrypt.genSaltSync(25);
+    let salt = bcrypt.genSaltSync(10);
     let password = bcrypt.hashSync(req.body.pass, salt);
-    useraccdb.insertUserAcc(req.body.altermail, req.body.usern, password).then((ress, err) => {
-        if (!err) {
-            return res.json({status: "OK", content: ress})
-        } else {
+    useraccdb.getUserAcc(req.body.usern).then((ress)=>{
+        if(ress == null){
+            useraccdb.insertUserAcc(req.body.altermail, req.body.usern, password).then((ress, err) => {
+                if (!err) {
+                    return res.json({status: "OK", content: ress})
+                } else {
+                    return res.json({status: "Error"})
+                }
+            });
+        }else {
             return res.json({status: "Error"})
         }
     });
 })
 
 app.post("/account/update/password", (req, res) => {
-    let salt = bcrypt.genSaltSync(25);
+    let salt = bcrypt.genSaltSync(10);
     let password = bcrypt.hashSync(req.body.pass, salt);
     useraccdb.updateUserAcc(req.body.usern, password).then((ress, err) => {
         if (!err) {
