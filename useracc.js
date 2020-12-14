@@ -34,7 +34,7 @@ rett.getUserAcc = (usern) => {
 
 //get password
 rett.getUserPass = (Username) => {
-    return userAcc.findOne({
+    return UserAcc.findOne({
             Username:Username
         },"Password");
 }
