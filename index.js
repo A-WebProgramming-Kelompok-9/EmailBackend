@@ -58,10 +58,10 @@ app.get("/delallmail", (req, res) => {
 
 app.post("/account", (req, res) => {
     useraccdb.getUserPass(req.body.usern).then((ress, err) => {
-        if (ress.password == null) {
+        if (ress == null) {
             return res.json({status: "Error"})
         }
-        if (bcrypt.compareSync(req.body.pass, ress.password)) {
+        if (bcrypt.compareSync(req.body.pass, ress.Password)) {
             useraccdb.getUserAcc(req.body.usern).then((ress, err) => {
                 if (!err) {
                     return res.json({status: "OK", content: ress})
