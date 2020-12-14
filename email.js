@@ -25,6 +25,7 @@ rett.getEmail = (id)=>{
 //select all
 rett.getAllEmail = (userid,page)=>{
     return Email.find({
+        Sender_Username:userid,
         Receiver_List:{ $regex: "\#" + userid + "\#"}
     },
         '_id Sender_Username Title Send_Date'
