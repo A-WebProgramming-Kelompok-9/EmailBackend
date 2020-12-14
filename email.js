@@ -25,7 +25,8 @@ rett.getEmail = (id)=>{
 //select all
 rett.getAllEmail = (userid,page)=>{
     return Email.find({
-        Receiver_List:{ $regex: ".*" + userid + ".*"}
+        Sender_Username:userid,
+        Receiver_List:{ $regex: "/$" + userid + "/$"}
     },
         '_id Sender_Username Title Send_Date'
     ).skip(parseInt(page)*20).limit(20);
