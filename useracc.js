@@ -33,6 +33,16 @@ rett.getUserAcc = (usern, pass) => {
     },"Username Display_Pic Background_Pic Display_Name");
 }
 
+//get password
+rett.getUserPass = (Username) => {
+    return userAcc.findOne({
+            Username:Username
+        },"Password");
+}
+//disini artinya itu kalo di sql
+//kita select password dari db
+//wherenya itu username
+
 //forgot
 rett.forgetUserAcc = (usern, altermail) => {
     return UserAcc.find({

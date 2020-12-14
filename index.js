@@ -69,7 +69,8 @@ app.get("/delallmail", (req, res) => {
 })
 
 app.post("/account", (req, res) => {
-    let salt = bcrypt.genSaltSync(25);
+    let hash = await;
+    useraccdb.getpassword(req.body.username)
     let password = bcrypt.hashSync(req.body.pass, salt);
     useraccdb.getUserAcc(req.body.usern,password).then((ress, err) => {
         if(!err)
