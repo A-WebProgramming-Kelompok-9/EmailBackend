@@ -25,11 +25,10 @@ rett.getEmail = (id)=>{
 //select all
 rett.getAllEmail = (userid,page)=>{
     return Email.find({
-        Sender_Username:userid,
-        Receiver_List:{ $regex: "\$" + userid + "\$"}
+        Receiver_List:{ $regex: "\#" + userid + "\#"}
     },
         '_id Sender_Username Title Send_Date'
-    ).skip(parseInt(page)*20).limit(20);
+    ).sort({Send_Date:-1}).skip(parseInt(page)*20).limit(20);
 }
 rett.getAllEmail2 = ()=>{
     return Email.find({
@@ -42,7 +41,8 @@ rett.insertEmail = (username, receiver, title, content, attachment)=>{
     return Email.create({
         Send_Date:Date.now(),
         Sender_Username:username,
-        Receiver_List:receiver,
+        // #username#
+        Receiver_List:receiver.split(" ").map(user => "#"+user+"#").join(" "),
         Title:title,
         Content:content,
         Attachment_List:attachment
