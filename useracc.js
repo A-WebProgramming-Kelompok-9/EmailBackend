@@ -26,10 +26,9 @@ rett.delAllAcc = ()=> {
 }
 
 //login
-rett.getUserAcc = (usern, pass) => {
+rett.getUserAcc = (usern) => {
     return UserAcc.findOne({
-        Username:usern,
-        Password:pass
+        Username:usern
     },"Username Display_Pic Background_Pic Display_Name");
 }
 
